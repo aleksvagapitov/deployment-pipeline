@@ -10,5 +10,4 @@ RUN dotnet restore
 COPY . .
 
 # test
-ENV TEAMCITY_PROJECT_NAME = ${TEAMCITY_PROJECT_NAME}
 ENTRYPOINT ["dotnet", "test", "--verbosity=normal"]

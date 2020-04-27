@@ -1,5 +1,5 @@
 docker-compose ps
-
+docker-compose config
 
 # To Look inside the built container
 docker-compose build
