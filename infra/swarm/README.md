@@ -14,8 +14,8 @@ docker version # should print out server version information if docker is succes
 
 vagrant ssh m1 # ssh into m1 
 # From m1:
-ping localost # test connectivity to custom registry, if wrong, update [provision/node.sh] to fix `/etc/hosts` entry for `my-registry`
-curl http://localost:55000/v2/_catalog # ensure registry is operational
+ping my-registry # test connectivity to custom registry, if wrong, update [provision/node.sh] to fix `/etc/hosts` entry for `my-registry`
+curl http://my-registry:55000/v2/_catalog # ensure registry is operational
 exit # go back to Host
 
 # If m1 (master) works then workers should too, only difference might be the ip address in the [Vagrantfile]

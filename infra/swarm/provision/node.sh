@@ -27,7 +27,7 @@ END
 cat >> /etc/hosts <<END
 
 # Insecure registry for aspnetcore docker course
-# 192.168.0.199 my-registry
+192.168.0.199 my-registry
 
 END
 # You can't pass both CLI args and use the daemon.json for parameters, 
