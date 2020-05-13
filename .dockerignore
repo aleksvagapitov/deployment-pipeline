@@ -1,0 +1,8 @@
+**/bin/
+**/obj/
+**/docs/
+**/.git/
+infra/
+**/Dockerfile*
+**/.dockerignore*
+**/docker-compose*.yml
