@@ -3,7 +3,7 @@ version: '3.1'
 services:
   generator:
     build:
-      context: .
+      context: ./api/.
     image: aspnetcore/generator:multi
     ports:
       - "8080:80"
@@ -12,3 +12,4 @@ services:
     ports:
       - "8025:8025"
       - "1025:1025"
+
