@@ -23,8 +23,8 @@ pipeline {
                     sh '''
                         docker-compose up -d
                         sleep 20
-                        docker-compose -f docker-compose.yml -f docker-compose-test.yml build e2e-test                       
-                        docker-compose -f docker-compose.yml -f docker-compose-test.yml up e2e-test
+                        docker-compose -f docker-compose.yml -f docker-compose-test.yml build
+                        docker-compose -f docker-compose.yml -f docker-compose-test.yml up
                     '''
                 }
             }
