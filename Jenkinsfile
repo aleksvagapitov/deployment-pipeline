@@ -8,9 +8,9 @@ pipeline {
             steps {
                 sh """
                     image="${registry}/gen:ci-${env.BUILD_NUMBER}"
-                    docker build -t $image .
+                    docker build -t \$image .
 
-                    docker push $image
+                    docker push \$image
                     """
             }
         }
