@@ -1,40 +1,27 @@
 pipeline {
     agent any
     environment {
-       REGISTRY = "my-registry:55001"
-       USER = "ecs"
+       REGISTRY = "my-registry:55000"
     }
     stages {
-        stage('Audit') {
-            steps {
-                sh 'docker version && docker-compose version'
-            }
-        }
         stage('Build') {
             steps {
-                dir('.') {
-                    sh 'docker-compose build'
-                }
+                sh """
+                    image="${Registry}/gen:ci-${env.BUILD_NUMBER}"
+                    docker build -t image .
+
+                    docker push image
+                    """
             }
         }
-        stage('Test') {
+        stage('Integration') {
             steps {
-                dir('.') {
-                    sh '''
-                        docker-compose up -d
-                        sleep 20
-                        docker-compose -f docker-compose.yml -f docker-compose-test.yml build
-                        docker-compose -f docker-compose.yml -f docker-compose-test.yml up
+                sh '''
+                    docker-compose up \
+                    --force-recreate \
+                    --abort-on-container-exit \
+                    --build
                     '''
-                }
-            }
-        }
-        stage('Push') {
-            steps {
-                dir('.') {
-                    sh 'docker-compose push'
-                    echo "Pushed web to http://$REGISTRY/v2/diamol/ch11-numbers-web/tags/list"
-                }
             }
         }
     }
