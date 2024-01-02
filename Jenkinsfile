@@ -21,6 +21,8 @@ pipeline {
                     --force-recreate \
                     --abort-on-container-exit \
                     --build
+
+                    docker-compose down
                     '''
             }
         }
