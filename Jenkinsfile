@@ -26,5 +26,12 @@ pipeline {
                     '''
             }
         }
+        stage('Deploy Demo') {
+            steps {
+                dir ("deploy") {
+                    sh 'docker stack deploy -c demo.yml demo'
+                }
+            }
+        }
     }
 }
