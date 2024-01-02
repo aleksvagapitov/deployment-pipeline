@@ -1,17 +1,17 @@
 pipeline {
     agent any
     environment {
-       REGISTRY = "my-registry:55000"
-       IMAGE = ""
+       registry = "my-registry:55000"
+       image = ""
     }
     stages {
         stage('Build') {
             steps {
                 sh """
-                    IMAGE="${Registry}/gen:ci-${env.BUILD_NUMBER}"
-                    docker build -t ${Image} .
+                    image="${registry}/gen:ci-${env.BUILD_NUMBER}"
+                    docker build -t ${image} .
 
-                    docker push ${Image}
+                    docker push ${image}
                     """
             }
         }
