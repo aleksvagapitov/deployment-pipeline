@@ -17,7 +17,7 @@ pipeline {
         stage('Integration') {
             steps {
                 sh '''
-                    docker-compose up \
+                    docker-compose -f docker-compose.test.yml up \
                     --force-recreate \
                     --abort-on-container-exit \
                     --build
