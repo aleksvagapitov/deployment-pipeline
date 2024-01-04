@@ -7,4 +7,4 @@ services:
     image: mailhog/mailhog
   integration:
     image: my-registry:55000/gen:integration-${BUILD_NUMBER-10}
-    build: integration/.
+    build: .
