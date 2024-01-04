@@ -16,14 +16,16 @@ pipeline {
         }
         stage('Integration') {
             steps {
-                sh '''
-                    docker-compose -f docker-compose.jenkins.test.yml up \
-                    --force-recreate \
-                    --abort-on-container-exit \
-                    --build
+                dir ("integration"){
+                    sh '''
+                        docker-compose -f docker-compose.jenkins.test.yml up \
+                        --force-recreate \
+                        --abort-on-container-exit \
+                        --build
 
-                    docker-compose down
-                    '''
+                        docker-compose down
+                        '''
+                }
             }
         }
         stage('Deploy Demo') {
