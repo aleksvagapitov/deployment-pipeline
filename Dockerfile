@@ -14,7 +14,7 @@ COPY . .
 
 # test
 ENV TEAMCITY_PROJECT_NAME = ${TEAMCITY_PROJECT_NAME}
-RUN dotnet test tests/tests.csproj -l:trx --verbosity=normal
+RUN dotnet test tests/tests.csproj --verbosity=normal
 
 # publish
 RUN dotnet publish api/api.csproj -o /publish
