@@ -6,6 +6,8 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+                sh(script: 'dotnet test -l:trx')
+                mstest(testResultsFile: '**/*.trx', failOnError: false, keepLongStdio: true)
                 sh """
                     image="${registry}/gen:ci-${env.BUILD_NUMBER}"
                     docker build -t \$image .
