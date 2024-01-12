@@ -6,9 +6,7 @@ pipeline {
     stages { 
         stage('Build') {
             steps {
-                sh "export PATH=${PATH}:${HOME}/.dotnet/tools"
-                sh(script: 'dotnet test -l:trx')
-                mstest(testResultsFile: '**/*.trx', failOnError: false, keepLongStdio: true)
+                dotnetTest( configuration: my_configuration_map, noBuild: true, project: buildSolutionFile, continueOnError: true, unstableIfErrors: true, properties:[:], logger:"trx;LogFileName=UnitTestFile.trx", filter: dotnetTestFilter, sdk: sdkVersion)
                 sh """
                     image="${registry}/gen:ci-${env.BUILD_NUMBER}"
                     docker build -t \$image .
