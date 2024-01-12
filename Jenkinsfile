@@ -4,13 +4,9 @@ pipeline {
        registry = "my-registry:55000"
     }
     stages { 
-        stage('Environment') {
-            steps {
-                echo "PATH = ${env.PATH}"
-            }
-        }
         stage('Build') {
             steps {
+                sh "export PATH=${PATH}:${HOME}/.dotnet/tools"
                 sh(script: 'dotnet test -l:trx')
                 mstest(testResultsFile: '**/*.trx', failOnError: false, keepLongStdio: true)
                 sh """
