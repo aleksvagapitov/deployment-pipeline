@@ -4,6 +4,11 @@ pipeline {
        registry = "my-registry:55000"
     }
     stages {
+        stage('Environment') {
+            steps {
+                echo "PATH = ${PATH}"
+            }
+        }
         stage('Build') {
             steps {
                 sh(script: 'dotnet test -l:trx')
