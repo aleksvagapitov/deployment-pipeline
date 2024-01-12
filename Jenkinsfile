@@ -3,11 +3,10 @@ pipeline {
     environment {
        registry = "my-registry:55000"
     }
-    stages {
+    stages { 
         stage('Environment') {
             steps {
-                echo "DOTNET_ROOT=$HOME/.dotnet"
-                echo "PATH=${PATH}:$HOME/.dotnet:$HOME/.dotnet/tools"
+                echo "PATH = ${env.PATH}"
             }
         }
         stage('Build') {
