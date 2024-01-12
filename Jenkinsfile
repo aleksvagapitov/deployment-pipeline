@@ -6,7 +6,8 @@ pipeline {
     stages {
         stage('Environment') {
             steps {
-                echo "PATH = ${PATH}"
+                echo "DOTNET_ROOT=$HOME/.dotnet"
+                echo "PATH=${PATH}:$HOME/.dotnet:$HOME/.dotnet/tools"
             }
         }
         stage('Build') {
