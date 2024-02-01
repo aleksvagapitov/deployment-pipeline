@@ -32,7 +32,6 @@ pipeline {
             steps {
                 dir ("deploy") {
                     sh '''
-                    export DOCKER_HOST=172.16.0.100
                     docker stack deploy -c demo.yml demo
                     '''
                 }
